@@ -1,13 +1,13 @@
 let id_caro = document.getElementById("caro");
 let board = [];
 let data = "";
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 3; i++) {
     board[i] = new Array('.', '.', '.', '.', '.', '.', '.', '.', '.', '.');
 }
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 3; i++) {
     data += "<br/>";
-    for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < 3; j++) {
         data += board[i][j] + "&nbsp;&nbsp;";
     }
 }
@@ -42,9 +42,9 @@ function changeValue() {
         }
         check = true;
     }
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 3; i++) {
         data += "<br/>";
-        for (let j = 0; j < 10; j++) {
+        for (let j = 0; j < 3; j++) {
             data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
         }
     }
@@ -54,6 +54,29 @@ function changeValue() {
 
 
 function winner(array) {
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            // if (array[i][0] == array[j][0] && array[i][1] > array[j][1]) {
+            //     let temp = array[i][1];
+            //     array[i][1] = array[j][1];
+            //     array[j][1] = temp;
+            // } else if (array[i][1] == array[j][1] && array[i][0] > array[j][0]) {
+            //     let temp = array[i][0];
+            //     array[i][0] = array[j][0];
+            //     array[j][0] = temp;
+            // } else
+            if (array[i][1] > array[j][1] || array[i][0] > array[j][0]) {
+                let temp = array[i][0];
+                array[i][0] = array[j][0];
+                array[j][0] = temp;
+
+                let temp1 = array[i][1];
+                array[i][1] = array[j][1];
+                array[j][1] = temp1;
+            }
+        }
+    }
+
     for (let i = 0; i < array.length - 2; i++) {
         for (let j = i + 1; j < array.length - 1; j++) {
             for (let k = j + 1; k < array.length; k++) {
